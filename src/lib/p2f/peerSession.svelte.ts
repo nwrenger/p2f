@@ -4,6 +4,22 @@ import { decodeSignal, encodeSignal } from './signaling';
 import { TransferManager } from './transferManager.svelte';
 import type { Role, ToastDispatcher } from './types';
 
+const iceServers: RTCIceServer[] = [
+	{
+		urls: ['stun:stun.l.google.com:19302', 'stun:stun.cloudflare.com:3478']
+	},
+	{
+		urls: ['turn:freestun.net:3478', 'turns:freestun.net:5349'],
+		username: 'free',
+		credential: 'free'
+	}
+];
+
+export const rtcConfig: RTCConfiguration = {
+	iceServers,
+	iceTransportPolicy: 'all'
+};
+
 export class PeerSession {
 	role = $state<Role>('detecting');
 	peer = $state<Peer | null>(null);
@@ -36,7 +52,7 @@ export class PeerSession {
 		this.role = 'host-wait';
 		this.hostStatus = 'gathering ICE candidates…';
 
-		this.peer = new Peer({ initiator: true, trickle: false });
+		this.peer = new Peer({ initiator: true, trickle: false, config: rtcConfig });
 		this.setupPeerEvents(this.peer);
 
 		this.peer.on('signal', async (data) => {
