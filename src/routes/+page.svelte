@@ -30,7 +30,7 @@
 	<link rel="canonical" href="https://p2f.nwrenger.dev/" />
 </svelte:head>
 
-<div class="flex min-h-screen flex-col items-center justify-center sm:p-8">
+<div class="flex min-h-dvh flex-col items-center justify-center sm:p-8">
 	<div class="mb-10 text-xs tracking-[0.3em] text-surface-700-300 uppercase">peer to file</div>
 
 	<div
