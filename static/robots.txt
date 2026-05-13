@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Disallow:
+
+Sitemap: https://p2f.nwrenger.dev/sitemap.xml
+Host: p2f.nwrenger.dev
